@@ -32,46 +32,58 @@ import java.util.Scanner;
 public class MrKMarsh 
 {
 	
-	private static void traverseBorder(String[][] land, int m, int n)
+	private static boolean hasMarsh(char[][] land, int i)
 	{
-		int i;
-		
-		for (i = 0; i < m; ++i)
-		{
-			if (land[0][i] == "x" || land[land.length - 1][i] == "x")
-			{
-				--m;
-				--n;
-			}
-		}
-		for (i = 0; i < n; ++i)
-		{
-			if (land[i][0] == "x" || land[i][land.length - 1] == "x")
-			{
-				--m;
-				--n;
-			}
-		}
+		return (land[0][i] == 'x' 				|| 
+				land[land.length - 1][i] == 'x' ||
+				land[i][0] == 'x'  				||
+				land[i][land.length - 1] == 'x');
 	}
 	
-	private static void findPerimiter(String[][] land, int m, int n)
+	private static void findPerimiter(char[][] land, int m, int n)
 	{
+		int perimiter = 0;
+		
+		for (int i = 0; m > 0 && n > 0; ++i)
+		{
+			if (hasMarsh(land, i))
+			{
+				--m;
+				--n;
+			}
+			else
+			{
+				perimiter = (2 * (m - 1)) + (2 * (n - 1));
+				break;
+			}
+		}
+		
+		if (perimiter == 0)
+		{
+			System.out.println("impossible");
+		}
+		else
+		{
+			System.out.println(perimiter);
+		}
 	}
 	
 	public static void main(String[] args)
 	{
-		int i, j, m, n;
+		int    i, j, m, n;
+		String str;
 		
-		Scanner    scanner = new Scanner(System.in);
-				   m 		= scanner.nextInt();
-				   n 		= scanner.nextInt();
-		String[][] land   = new String[m][n];
+		Scanner  scanner = new Scanner(System.in);
+			     m 	     = scanner.nextInt();
+				 n 	     = scanner.nextInt();
+		char[][] land    = new char[m][n];
 		
 		for (i = 0; i < m; ++i)
 		{
+			str = scanner.next();
 			for (j = 0; j < n; ++j)
 			{
-				land[i][j] = scanner.next();
+				land[i][j] = str.charAt(j);
 			}
 		}
 		
