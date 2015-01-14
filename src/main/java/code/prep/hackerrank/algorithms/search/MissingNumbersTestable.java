@@ -18,8 +18,8 @@ public class MissingNumbersTestable
 		int 					  i, n, amt;
 		StringBuilder			  sb			 = new StringBuilder();
 		ArrayList<Integer> 		  missingNumbers = new ArrayList<Integer>();
-		HashMap<Integer, Integer> aHash 	     = new HashMap<Integer, Integer>();
-		HashMap<Integer, Integer> bHash 		 = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> aHash 		 = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> bHash			 = new HashMap<Integer, Integer>();
 
 		for (i = 0; i < a.length; ++i)
 		{
