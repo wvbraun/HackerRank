@@ -6,6 +6,6 @@ and by companies to recruit great tech talent. The site provides programming
 problems and contests in different domains of Computer Science. Members are able
 to solve interesting and challenging programming problems.
 
-<a href="https://www.hackerrank.com/">HackerRank</a>
+[HackerRank](https://www.hackerrank.com)
 ```
 
