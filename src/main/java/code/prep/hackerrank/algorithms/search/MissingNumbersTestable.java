@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class MissingNumbersTestable
 {
+	int k; // this is to be rm'd
+	
 	public MissingNumbersTestable(String str)
 	{
 		System.setIn(new ByteArrayInputStream(str.getBytes()));
