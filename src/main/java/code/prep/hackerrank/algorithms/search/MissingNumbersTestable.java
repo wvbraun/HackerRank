@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class MissingNumbersTestable
 {
-	
 	public MissingNumbersTestable(String str)
 	{
 		System.setIn(new ByteArrayInputStream(str.getBytes()));
