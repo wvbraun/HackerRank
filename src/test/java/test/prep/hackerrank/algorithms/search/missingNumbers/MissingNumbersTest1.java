@@ -1,4 +1,4 @@
-package test.prep.hackerrank.algorithms.search;
+package test.prep.hackerrank.algorithms.search.missingNumbers;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import code.prep.hackerrank.algorithms.search.MissingNumbersTestable;
 
 public class MissingNumbersTest1 {
 
-	MissingNumbersTestable mNum;
+	private MissingNumbersTestable mNum;
 	@Before
 	public void setup()
 	{

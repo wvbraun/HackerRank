@@ -2,7 +2,6 @@ package code.prep.hackerrank.algorithms.search;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class TheGridSearchTestable 
 {
@@ -58,7 +57,7 @@ public class TheGridSearchTestable
 		
 		return samePattern;
 	}
-	private static void containsPattern(int[][] grid, int[][] pattern, int r, int c)
+	private static String containsPattern(int[][] grid, int[][] pattern, int r, int c)
 	{
 		String  containsPattern = "NO";
 		int[][] tmp				= new int[r][c];
@@ -69,8 +68,7 @@ public class TheGridSearchTestable
 				for (int j = 0; j + c< grid[i].length; ++j)
 				{
 					tmp = subMatrix(grid, i, i + r, j, j + c);
-					//if (samePattern(pattern, tmp))
-					if (Arrays.deepEquals(pattern, tmp))
+					if (samePattern(pattern, tmp))
 					{
 						containsPattern = "YES";
 						break loop;
@@ -78,51 +76,45 @@ public class TheGridSearchTestable
 				}
 			}
 		
-		System.out.println(containsPattern);
+		return containsPattern;
 	}
 	
-	public static void main(String[] args)
+	public String start()
 	{
-		int		C, c, i, j, t, R, r;
+		int		C, c, i, j, R, r;
 		String  row;
 		int[][] grid, pattern;
 		Scanner scanner = new Scanner(System.in);
+	
+		R    = scanner.nextInt();
+		C    = scanner.nextInt();
+		grid = new int[R][C];
 		
-		t = scanner.nextInt();
-		
-		while (t > 0)
+		for (i = 0; i < R; ++i)
 		{
-			R    = scanner.nextInt();
-			C    = scanner.nextInt();
-			grid = new int[R][C];
-			
-			for (i = 0; i < R; ++i)
+			row = scanner.next();
+			for (j = 0; j < C; ++j)
 			{
-				row = scanner.next();
-				for (j = 0; j < C; ++j)
-				{
-					grid[i][j] = Character.getNumericValue(row.charAt(j));	
-				}
+				grid[i][j] = Character.getNumericValue(row.charAt(j));	
 			}
-			
-			r       = scanner.nextInt();
-			c       = scanner.nextInt();
-			pattern = new int[r][c];
-			
-			for (i = 0; i < r; ++i)
-			{
-				row = scanner.next();
-				for (j = 0; j < c; ++j)
-				{
-					pattern[i][j] = Character.getNumericValue(row.charAt(j));
-				}
-			}
-			
-			containsPattern(grid, pattern, r, c);
-			--t;
 		}
 		
+		r       = scanner.nextInt();
+		c       = scanner.nextInt();
+		pattern = new int[r][c];
+		
+		for (i = 0; i < r; ++i)
+		{
+			row = scanner.next();
+			for (j = 0; j < c; ++j)
+			{
+				pattern[i][j] = Character.getNumericValue(row.charAt(j));
+			}
+		}
+	
 		scanner.close();
+		System.setIn(System.in);
+		return(containsPattern(grid, pattern, r, c));
 	}
 
 }

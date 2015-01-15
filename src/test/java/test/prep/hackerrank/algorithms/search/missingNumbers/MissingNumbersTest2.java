@@ -1,4 +1,4 @@
-package test.prep.hackerrank.algorithms.search;
+package test.prep.hackerrank.algorithms.search.missingNumbers;
 
 import static org.junit.Assert.*;
 
