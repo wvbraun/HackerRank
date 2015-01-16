@@ -1,7 +1,11 @@
 package code.prep.hackerrank.algorithms.search;
 
+import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
+
 
 /**
  * Problem Statement
@@ -114,38 +118,7 @@ public class TheGridSearch
 		
 		return sub;
 	}
-	
-	private static boolean samePattern(int[][] mat1, int[][] mat2)
-	{
-		boolean samePattern = true;
-		
-		if (mat1 == null && mat2 != null || mat2 == null && mat1 != null)
-		{
-			samePattern = false;
-		}
-		else if (mat1.length == mat2.length && mat1[0].length == mat2[0].length)
-		{
-			loop:
-				for (int i = 0; i < mat1.length; ++i)
-				{
-					for (int j = 0; j < mat1[0].length; ++j)
-					{
-						if (mat1[i][j] != mat2[i][j])
-						{
-							samePattern = false;
-							break loop;
-						}
-					}
-				}
-		}
-		else
-		{
-			samePattern = false;
-		}
-		
-		return samePattern;
-	}
-	
+
 	private static void containsPattern(int[][] grid, int[][] pattern, int r, int c)
 	{
 		String  containsPattern = "NO";
@@ -168,24 +141,29 @@ public class TheGridSearch
 		System.out.println(containsPattern);
 	}
 	
+	@SuppressWarnings("unused")
 	private static void containsPattern1(int[][] grid, int[][] pattern, int r, int c)
 	{
 		String  containsPattern = "NO";
-		int[][] tmp				= new int[r][c];
+		HashMap<Integer, ArrayList<Point>> hash = new HashMap<Integer, ArrayList<Point>>();
 		
-		loop:
-			for (int i = 0; i + r < grid.length; ++i)
+		for (int i = 0; i < grid.length; ++i)
+		{
+			for (int j = 0; j < grid[i].length; ++j)
 			{
-				for (int j = 0; j + c< grid[i].length; ++j)
+				int key = grid[i][j];
+				if (!hash.containsKey(key))
 				{
-					tmp = subMatrix(grid, i, i + r, j, j + c);
-					if (samePattern(pattern, tmp))
-					{
-						containsPattern = "YES";
-						break loop;
-					}
+					hash.put(key, new ArrayList<Point>(Arrays.asList(new Point(i, j))));
+				}
+				else
+				{
+					ArrayList<Point> ls = hash.get(key);
+					ls.add(new Point(i, j));
+					hash.put(key, ls);
 				}
 			}
+		}
 		
 		System.out.println(containsPattern);
 	}
@@ -226,17 +204,8 @@ public class TheGridSearch
 					pattern[i][j] = Character.getNumericValue(row.charAt(j));
 				}
 			}
-			
-			long start, end;
-			start = System.nanoTime();
+
 			containsPattern(grid, pattern, r, c);
-			end   = System.nanoTime() - start;
-			System.out.println(end);
-			
-			start = System.nanoTime();
-			containsPattern1(grid, pattern, r, c);
-			end   = System.nanoTime() - start;
-			System.out.println(end);
 			--t;
 		}
 		
