@@ -49,33 +49,70 @@ import java.util.Scanner;
  * 2 4 4 6 8 
  * 2 3 4 6 8 
  */
-public class InsertionSort 
+public class InsertionSortA 
 {
 	
 	private static void printArray(int[] ls)
 	{
 		for (int i = 0; i < ls.length - 1; ++i)
 		{
-			System.out.print(i + " ");
+			System.out.print(ls[i] + " ");
 		}
 		System.out.println(ls[ls.length - 1]);
 	}
 	
+	private static boolean isSorted(int[] ls)
+	{
+	   boolean isSorted = true;
+	   
+	   for (int i = 0; i < ls.length - 1; ++i)
+	   {
+	      if (ls[i] > ls[i+1])
+	      {
+	         isSorted = false;
+	         break;
+	      }
+	   }
+	   
+	   return isSorted;
+	}
+	
+	private static void fixArray(int n, int i, int[] ls)
+	{
+	   for (int j = i; j >= 0; --j)
+	   {
+	      if (j == 0)
+	      {
+	         ls[j] = n;
+	      }
+	      else if (n > ls[j - 1])
+	      {
+	         ls[j] = n;
+	         printArray(ls);
+	         break;
+	      }
+	      else
+	      {
+	         ls[j] = ls[j-1];
+	      }
+	      printArray(ls);
+	   }
+	}
+	
 	private static void sort(int[] ls)
 	{
-		int i, j, x;
+		int i, n;
 		
-		for (i = 1; i < ls.length; ++i)
+		while (!isSorted(ls))
 		{
-			x = ls[i];
-			j = i;
-			while (j > 0 && ls[j - 1] > x)
-			{
-				ls[j] = ls[j - 1];
-				printArray(ls);
-				--j;
-			}
-			ls[j] = x;
+   		for (i = 0; i < ls.length - 1; ++i)
+   		{
+   		   if (ls[i] > ls[i+1])
+   		   {
+   		      n = ls[i+1];
+   		      fixArray(n, i+1, ls);
+   		   }
+   		}
 		}
 	}
 	
