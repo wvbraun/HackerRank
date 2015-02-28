@@ -36,27 +36,26 @@ import java.util.Scanner;
  */
 
 public class MarksAndToys
-{
-   
+{  
    public static int findToys(int[] prices, int k)
    {
       int i                   = 0;
       int total               = 0;
-      ArrayList<Integer> toys = new ArrayList<Integer>();
+     // ArrayList<Integer> toys = new ArrayList<Integer>();
       
       Arrays.sort(prices);
       
-      while (total <= k)
+      while (total <= k && (total + prices[i]) < k)
       {
-         toys.add(prices[i]);
+         //toys.add(prices[i]);
          total += prices[i];
          ++i;
       }
       
-      return toys.size();
+      return i;
    }
    
-   public static void Main(String[] args)
+   public static void main(String[] args)
    {
       int     n, k;
       int[]   prices;
